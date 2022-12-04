@@ -6,17 +6,17 @@ import pathlib
 file_path = os.path.join(pathlib.Path(__file__).parent.absolute(), 'data_day1.in')
 print(file_path)
 
-with open(file_path, 'r') as f:
+with open(file_path, 'r', encoding='utf-8') as f:
     lines = f.readlines()
 
-best, actual = 0, 0
+best, SCORE = 0, 0
 
 for line in lines:
     if line!='\n':
-        actual += int(line)
+        SCORE += int(line)
     else:
-        best = max(best, actual)
-        actual = 0
+        best = max(best, SCORE)
+        SCORE = 0
 
 print(best)
 
@@ -24,16 +24,12 @@ print(best)
 print( "\n***\n")
 
 calories = []
-actual = 0
+SCORE = 0
 for line in lines:
     if line!='\n':
-        actual += int(line)
+        SCORE += int(line)
     else:
-        calories.append(actual)
-        actual = 0
+        calories.append(SCORE)
+        SCORE = 0
 
 print(sum(sorted(calories)[::-1][:3]))
-
-
-
-
