@@ -1,5 +1,6 @@
 """Solutions to the day 2 problem"""
-import os, pathlib
+import os
+import pathlib
 
 scores = {
     # rock       #paper     #scissors
@@ -16,13 +17,11 @@ scores_2 = {
 }
 
 file_path = os.path.join(pathlib.Path(__file__).parent.absolute(), 'data.in')
-with open(file_path, 'r') as f:
+with open(file_path, 'r', encoding='utf-8') as f:
     lines = f.read().split('\n')
-print(sum([scores[line] for line in lines]))
-print(sum([scores_2[line] for line in lines]))
 
+sol_1 = [scores[line] for line in lines]
+sol_2 = [scores_2[line] for line in lines]
 
-
-
-
-
+print(sum(sol_1))
+print(sum(sol_2))
