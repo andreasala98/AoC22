@@ -1,26 +1,30 @@
 """Day 4 of 2022 AoC"""
 
-import os, pathlib
+import os
+import pathlib
 
-def contains(t: list[str]):
-    a0, a1 = t[0].split('-')
-    b0, b1 = t[1].split('-')
-    return (int(a0)<=int(b0) and int(a1)>=int(b1)) or (int(b0)<=int(a0) and int(b1)>=int(a1))
+def contains(tup: list[str]):
+    """Check if two intervals contain each other"""
+    a_0, a_1 = tup[0].split('-')
+    b_0, b_1 = tup[1].split('-')
+    return (int(a_0)<=int(b_0)and int(a_1)>=int(b_1)) or (int(b_0)<=int(a_0) and int(b_1)>=int(a_1))
 
-def overlaps(t: list[str]):
-    a0, a1 = t[0].split('-')
-    b0, b1 = t[1].split('-')
-    return int(b0) <= int(a0) <= int(b1) or int(a0) <= int(b0) <= int(a1)
+def overlaps(tup: list[str]):
+    """CHeck if two intervals overlap"""
+    a_0, a_1 = tup[0].split('-')
+    b_0, b_1 = tup[1].split('-')
+    return int(b_0) <= int(a_0) <= int(b_1) or int(a_0) <= int(b_0) <= int(a_1)
 
 file_path = os.path.join(pathlib.Path(__file__).parent.absolute(), 'data.in')
 
 
-with open(file_path, 'r') as f:
+with open(file_path, 'r', encoding='utf-8') as f:
     ranges = [l.split(',') for l in f.read().split('\n')]
 
-
-print(sum([contains(t) for t in ranges]))
+sol_1 = [contains(t) for t in ranges]
+print(sum(sol_1))
 
 ### part 2 ###
 
-print(sum([overlaps(t) for t in ranges]))
+sol_2 = [overlaps(t) for t in ranges]
+print(sum(sol_2))
