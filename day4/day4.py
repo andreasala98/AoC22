@@ -3,13 +3,13 @@
 import os
 import pathlib
 
-def contains(tup: list[str]):
+def contains(tup):
     """Check if two intervals contain each other"""
     a_0, a_1 = tup[0].split('-')
     b_0, b_1 = tup[1].split('-')
     return (int(a_0)<=int(b_0)and int(a_1)>=int(b_1)) or (int(b_0)<=int(a_0) and int(b_1)>=int(a_1))
 
-def overlaps(tup: list[str]):
+def overlaps(tup):
     """CHeck if two intervals overlap"""
     a_0, a_1 = tup[0].split('-')
     b_0, b_1 = tup[1].split('-')
