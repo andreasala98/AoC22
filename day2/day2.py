@@ -1,5 +1,6 @@
 """Solutions to the day 2 problem"""
-import os, pathlib
+import os
+import pathlib
 
 scores = {
     # rock       #paper     #scissors
