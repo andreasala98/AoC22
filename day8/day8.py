@@ -1,3 +1,4 @@
+#! /usr/bin/env python
 """day 8 of 2022 Advent of Code"""
 
 import os
