@@ -2,15 +2,15 @@
 
 import os
 import pathlib
-import numpy as np
 import copy
 
 def dist(point_1, point_2):
+    """Distance with funny metric"""
     return max(abs(point_1[0]-point_2[0]), abs(point_1[1] - point_2[1]))
 
 def move_head(dir_, head_):
     """Move head"""
-    
+
     if dir_=='R':
         head_[0]+=1
     elif dir_=='L':
@@ -21,11 +21,8 @@ def move_head(dir_, head_):
         head_[1]-=1
     return head_
 
-def move_tail(head_, prev_head_, tail_, visit, ix):
-    try:
-        d = dist(head_, tail_)
-    except:
-        breakpoint()
+def move_tail(head_, prev_head_, tail_, visit, i_x):
+    """Move tail if it is too far from the head"""
     #print(f"Distance: {dist(head_, tail_)}")
     if dist(head_, tail_)<=1:
         #print("Tail does not move")
@@ -35,11 +32,11 @@ def move_tail(head_, prev_head_, tail_, visit, ix):
         tail_ [0], tail_[1] = prev_head_[0], prev_head_[1]
         if (tail_[0],tail_[1]) not in visit:
             visit.add((tail_[0], tail_[1]))
-            if ix==9:
-                print(f"Added {(tail_[0], tail_[1])} to knot {ix}")
+            if i_x==9:
+                print(f"Added {(tail_[0], tail_[1])} to knot {i_x}")
 
     return tail_, visit
-    
+
 
 file_path = os.path.join(pathlib.Path(__file__).parent.absolute(), 'data.test')
 
@@ -54,7 +51,7 @@ visited = set((0,0))
 
 # for cmd in commands:
 #     dir, quant = cmd.split(' ')
-    
+
 #     for _ in range(int(quant)):
 
 #         prev_head[0] = head[0]
@@ -77,11 +74,11 @@ for j in range(10):
 knots = [[0,0] for _ in range(10)]
 
 for cmd in commands:
-    dir, quant = cmd.split(' ')
-    
+    dire, quant = cmd.split(' ')
+
     for _ in range(int(quant)):
         prev_knots = copy.deepcopy(knots)
-        knots[0] = move_head(dir, knots[0])
+        knots[0] = move_head(dire, knots[0])
 
         for j in range(1, 10):
             knots[j], visited_2[j] = move_tail(
@@ -89,8 +86,7 @@ for cmd in commands:
                 prev_head_=prev_knots[j-1],
                 tail_=knots[j],
                 visit=visited_2[j],
-                ix=j
+                i_x=j
             )
 
-breakpoint()
 print(len(visited_2[9])-1)
